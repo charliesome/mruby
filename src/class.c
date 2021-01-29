@@ -291,6 +291,12 @@ mrb_gc_free_mt(mrb_state *mrb, struct RClass *c)
 }
 
 void
+mrb_set_instance_tt(struct RClass *c, enum mrb_vtype tt)
+{
+  ((c)->flags = (((c)->flags & ~MRB_INSTANCE_TT_MASK) | (char)(tt)));
+}
+
+void
 mrb_class_name_class(mrb_state *mrb, struct RClass *outer, struct RClass *c, mrb_sym id)
 {
   mrb_value name;

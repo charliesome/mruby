@@ -70,8 +70,10 @@ mrb_class(mrb_state *mrb, mrb_value v)
 } while (0)
 #define MRB_FL_CLASS_IS_INHERITED (1 << 17)
 #define MRB_INSTANCE_TT_MASK (0xFF)
-#define MRB_SET_INSTANCE_TT(c, tt) ((c)->flags = (((c)->flags & ~MRB_INSTANCE_TT_MASK) | (char)(tt)))
+#define MRB_SET_INSTANCE_TT(c, tt) mrb_set_instance_tt(c, tt)
 #define MRB_INSTANCE_TT(c) (enum mrb_vtype)((c)->flags & MRB_INSTANCE_TT_MASK)
+
+MRB_API void mrb_set_instance_tt(struct RClass *c, enum mrb_vtype tt);
 
 struct RClass *mrb_vm_define_class(mrb_state*, mrb_value, mrb_value, mrb_sym);
 struct RClass *mrb_vm_define_module(mrb_state*, mrb_value, mrb_sym);
